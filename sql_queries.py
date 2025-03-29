@@ -33,3 +33,17 @@ limit 3;
 #  PG0260    |    27
 #  PG0371    |    27
 #  PG0310    |    27
+
+# Вывести число перелетов внутри одной таймзоны
+# Нужно вывести 1 значение в колонке count
+TASK_3_QUERY = """
+select COUNT(*)
+from flights as f
+join airports_data arr on f.arrival_airport = arr.airport_code
+join airports_data dep on f.departure_airport = dep.airport_code
+where arr.timezone = dep.timezone;
+"""
+#  count
+# --------
+#  16824
+
